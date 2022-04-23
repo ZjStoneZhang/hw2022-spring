@@ -105,9 +105,10 @@ Triangle::~Triangle()
 
 int main()
 {
-	Point p0(0, 0);
+	Point p_test1(0, 0), p_test2(1, 1);
 	Point p1(0, 0), p2(2, 0), p3(1, 2);
 	Triangle tr(p1, p2, p3);
-	tr.Judge(p0);
+	tr.Judge(p_test1);
+	tr.Judge(p_test2);
 	return 0;
 }
