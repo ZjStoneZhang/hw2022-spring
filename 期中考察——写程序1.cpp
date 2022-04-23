@@ -1,7 +1,7 @@
-/*µÚÊ®ÖÜÆÚÖĞ¿¼²ì2.1Ìâ 
+/*ç¬¬åå‘¨æœŸä¸­è€ƒå¯Ÿ2.1é¢˜ 
 
-/*ÌâÄ¿ÒªÇó£ºÉè¼ÆÒ»¸öµãÀà Point£¬°üº¬Èı¸ö×ø±êÊı¾İ³ÉÔ± x, y, z ºÍÒ»¸ö¹¹Ôì
-º¯Êı£»ÔÙÉè¼ÆÒ»¸öÓÑÔªº¯Êı distance()ÓÃÓÚÇóÁ½µãÖ®¼äÔÚÈıÎ¬¿Õ¼äµÄ¾àÀë¡£*/ 
+/*é¢˜ç›®è¦æ±‚ï¼šè®¾è®¡ä¸€ä¸ªç‚¹ç±» Pointï¼ŒåŒ…å«ä¸‰ä¸ªåæ ‡æ•°æ®æˆå‘˜ x, y, z å’Œä¸€ä¸ªæ„é€ 
+å‡½æ•°ï¼›å†è®¾è®¡ä¸€ä¸ªå‹å…ƒå‡½æ•° distance()ç”¨äºæ±‚ä¸¤ç‚¹ä¹‹é—´åœ¨ä¸‰ç»´ç©ºé—´çš„è·ç¦»ã€‚*/ 
 
 #include <iostream>
 #include <cmath>
@@ -17,7 +17,7 @@ class Point{
 		Point(float px, float py, float pz);
 		~Point();
 		friend float distance(Point &p1, Point &p2){
-	            return sqrt(pow(p1.x-p2.x, 2)+pow(p1.y-p2.y, 2)+pow(p1.z-p2.z, 2));
+	            return sqrt(pow(p1.x-p2.x, 2)+pow(p1.y-p2.y, 2)+pow(p1.z-p2.z, 2));/*ä¸¤ç‚¹é—´è·ç¦»å…¬å¼*/
             }
 };
 
@@ -41,6 +41,7 @@ Point::~Point()
 
 int main()
 {
+	/*ä¸»å‡½æ•°æµ‹è¯•*/
 	Point p1(1, 1, 1);
 	Point p2(0, 0, 0);
 	cout << distance(p1, p2) << endl;
