@@ -1,7 +1,7 @@
-/*��ʮ�����п���2.1�� 
+/*第十周期中考察2.1题 
 
-/*��ĿҪ�����һ���������ࣨ��ά�ռ䣩��������һ����Ա������
-�β��� x �� y������ֵΪ 1 �� 0����x, y���Ƿ����������ڡ�*/ 
+/*题目要求：设计一个三角形类（二维空间），该类有一个成员函数：
+形参有 x 和 y，返回值为 1 或 0：（x, y）是否在三角形内。*/ 
 
 #include <iostream>
 using namespace std;
@@ -13,11 +13,11 @@ class Point{
 	public:
 		Point();
 		Point(float px, float py);
-		Point operator-(Point &p);
-		float operator*(Point &p);
+		Point operator-(Point &p);/*定义重载减法，返回类视为一个向量*/
+		float operator*(Point &p);/*定义重载乘法，视为两向量做点乘并返回该值*/
 		friend class Triangle;
 		~Point();
-		/*void show(){cout << "x=" << x << '\n' << "y=" << y << endl;}*//*���Դ���*/ 
+		/*void show(){cout << "x=" << x << '\n' << "y=" << y << endl;}*//*调试代码*/ 
 };
 
 class Triangle{
@@ -84,14 +84,14 @@ int Triangle::Judge(Point &p)
 	p_a.show();
 	p_b.show();
 	p_c.show();
-	cout << pa*p_a << '\n' << pb*p_b << '\n' << pc*p_c << endl;*//*���Դ���*/ 
+	cout << pa*p_a << '\n' << pb*p_b << '\n' << pc*p_c << endl;*//*调试代码*/ 
 	
 	if (pa*p_a > 0 && pb*p_b > 0 && pc*p_c > 0){
-		cout << "Point(" << p.x << ", " << p.y << ") in triangle!" << endl;
-		return 1;
-	}
-	else if(pa*p_a < 0 && pb*p_b < 0 && pc*p_c < 0){
-		cout << "Point(" << p.x << ", " << p.y << ") in triangle!" << endl;
+		cout << "Point(" << p.x << ", " << p.y << ") in triangle!" << endl;/*算法说明：若p在三角形内，p1->p2->p, p2->p3->p, */
+		return 1;                                                          /*p3->p1->p三条路径方向（顺时针或逆时针）一定相同。*/
+	}                                                                          /*因此每条路径对应的两条向量内积和其他两条路径一定同*/
+	else if(pa*p_a < 0 && pb*p_b < 0 && pc*p_c < 0){                           /*号。异号说明p点在三角形外，内积为零说明p在三角形的*/
+		cout << "Point(" << p.x << ", " << p.y << ") in triangle!" << endl;/*某条边或顶点上。*/
 		return 1;
 	}
 	else{
