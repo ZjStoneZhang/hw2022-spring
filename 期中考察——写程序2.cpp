@@ -14,7 +14,7 @@ class Point{
 		Point();
 		Point(float px, float py);
 		Point operator-(Point &p);/*定义重载减法，返回类视为一个向量*/
-		float operator*(Point &p);/*定义重载乘法，视为两向量做点乘并返回该值*/
+		float operator*(Point &p);/*定义重载乘法，视为两向量做叉乘，以返回值的正负判断方向*/
 		friend class Triangle;
 		~Point();
 		/*void show(){cout << "x=" << x << '\n' << "y=" << y << endl;}*//*调试代码*/ 
@@ -53,7 +53,7 @@ Point Point::operator-(Point &p)
 
 float Point::operator*(Point &p)
 {
-	return p.x * this->x + p.y * this->y;
+	return this->x * p.y - this->y * p.x;
 }
 
 Point::~Point()
@@ -89,8 +89,8 @@ int Triangle::Judge(Point &p)
 	if (pa*p_a > 0 && pb*p_b > 0 && pc*p_c > 0){
 		cout << "Point(" << p.x << ", " << p.y << ") in triangle!" << endl;/*算法说明：若p在三角形内，p1->p2->p, p2->p3->p, */
 		return 1;                                                          /*p3->p1->p三条路径方向（顺时针或逆时针）一定相同。*/
-	}                                                                          /*因此每条路径对应的两条向量内积和其他两条路径一定同*/
-	else if(pa*p_a < 0 && pb*p_b < 0 && pc*p_c < 0){                           /*号。异号说明p点在三角形外，内积为零说明p在三角形的*/
+	}                                                                          /*因此每条路径对应的两条向量外积和其他两条路径一定同*/
+	else if(pa*p_a < 0 && pb*p_b < 0 && pc*p_c < 0){                           /*向。异号说明p点在三角形外，内积为零说明p在三角形的*/
 		cout << "Point(" << p.x << ", " << p.y << ") in triangle!" << endl;/*某条边或顶点上。*/
 		return 1;
 	}
@@ -105,10 +105,11 @@ Triangle::~Triangle()
 
 int main()
 {
-	Point p_test1(0, 0), p_test2(1, 1);
+	Point p_test1(0, 0), p_test2(1, 1), p_test3(2, 1);
 	Point p1(0, 0), p2(2, 0), p3(1, 2);
 	Triangle tr(p1, p2, p3);
 	tr.Judge(p_test1);
 	tr.Judge(p_test2);
+	tr.Judge(p_test3);
 	return 0;
 }
